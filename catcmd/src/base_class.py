@@ -7,8 +7,8 @@
 -----------------------------------------------------------
 """
 
-from catapult_cmd.utils import LOGGER, CONTAINER
-from catapult_cmd.utils.validators import *
+from catcmd.utils import LOGGER, CONTAINER
+from catcmd.utils.validators import *
 
 '''
     Base Class For Initializing A Logger And A Validator

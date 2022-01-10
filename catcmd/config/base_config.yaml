@@ -1,0 +1,25 @@
+users:
+  - user_id : 'at10d3'
+    git:
+      platform: 'github'
+      username: 'anubhav-tiwari-abt'
+      access_token: ''
+    user_name: 'Anubhav Tiwari'
+    user_email: 'anubhav.tiwari.abt@gmail.com'
+    projects:
+      - project_name: 'catcmd'
+        project_description: 'Catapult Command Line'
+        project_repo: 'catapult_cmd'
+        last_commit: ''
+        docker_image: 'catapult_cmd'
+        version: '0.0.1'
+        project_id: 'catcmd213asd'
+
+      - project_name: 'catrslv'
+        project_description: 'Catapult Import Resolver'
+        project_repo: 'catapult_resolver'
+        last_commit: ''
+        docker_image: 'catapult_resolver'
+        version: '0.0.1'
+        project_id: 'catreslv213asd'
+      
