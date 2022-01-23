@@ -14,6 +14,11 @@ class DICTIONARY(dict):
         for k,v in response.items():
             if isinstance(v, dict):
                 self.__dict__[k] = DICTIONARY(**v)
+            elif isinstance(v, list):
+                self.__dict__[k] = []
+                if isinstance(v[0], dict):
+                    for i in range(len(v)):
+                        self.__dict__[k].append(DICTIONARY(**v[i]))
             else:
                 self.__dict__[k] = v
                 
@@ -42,24 +47,38 @@ class DICTIONARY(dict):
         for k, v in self.__dict__.items():
             if isinstance(v, DICTIONARY):
                 v = v.to_yaml()
-            yaml_dict[k] = v
+                yaml_dict[k] = v
+            elif isinstance(v, list):
+                yaml_dict[k] = []
+                for i in range(len(v)):
+                    if isinstance(v[i], DICTIONARY):
+                        yaml_dict[k].append(v[i].to_yaml())
+                    else:
+                        yaml_dict[k].append(v[i])
+            else:
+                yaml_dict[k] = v
         return yaml_dict
 
 
 class CONFIG(DICTIONARY):
-    def __init__(self, config_file='./base_config.yaml', **kwargs):
-
-        with open(config_file) as f:
-            config = yaml.load(f, Loader=Loader)
-
+    def __init__(self, from_config=True, config_file='', **kwargs):
+        if from_config:
+            if config_file == '':
+                config_file = './base_config.yaml'
+        
+            with open(config_file) as f:
+                config = yaml.load(f, Loader=Loader)
+        else:
+            config = {}
+        
         for key, val in kwargs.items():
             config[key] = val
 
         super(CONFIG, self).__init__(**config)
         
     def save(self, path):
-        if path.endswith('\r.*'):
-            with open(path, 'w') as f:
-                yaml_obj = self.to_yaml()
-                Dumper.ignore_aliases = lambda *args : True
-                yaml.dump(yaml_obj, f, Dumper=Dumper)
+        # if path.endswith('\r.*'):
+        with open(path, 'w') as f:
+            yaml_obj = self.to_yaml()
+            Dumper.ignore_aliases = lambda *args : True
+            yaml.dump(yaml_obj, f, Dumper=Dumper)

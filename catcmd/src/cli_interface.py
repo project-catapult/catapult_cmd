@@ -1,9 +1,9 @@
 """
 -----------------------------------------------------------
-## Description  : 
-## Author       : 
-## Project      : 
-## Main Project : 
+## Description  : Catapult Command Line Interface
+## Author       : Anubhav Tiwari
+## Project      : catcmd
+## Main Project : Catapult
 -----------------------------------------------------------
 """
 
