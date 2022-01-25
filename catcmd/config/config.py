@@ -7,6 +7,7 @@
 -----------------------------------------------------------
 """
 import yaml
+from pprint import pprint
 from yaml import Loader, Dumper
 
 class DICTIONARY(dict):
@@ -76,7 +77,7 @@ class CONFIG(DICTIONARY):
 
         super(CONFIG, self).__init__(**config)
         
-    def save(self, path):
+    def export(self, path):
         # if path.endswith('\r.*'):
         with open(path, 'w') as f:
             yaml_obj = self.to_yaml()

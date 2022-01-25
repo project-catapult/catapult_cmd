@@ -22,4 +22,4 @@ users:
         docker_image: 'catapult_resolver'
         version: '0.0.1'
         project_id: 'catreslv213asd'
-      
+    is_active : True
