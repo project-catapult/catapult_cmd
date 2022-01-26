@@ -7,6 +7,7 @@ from .config import CONFIG
 def get_random_id(id_len=10):
     return ''.join(random.choice(string.ascii_lowercase+string.digits) for i in range(id_len))
 
+
 class CATAPULT(CONFIG):
     save_path = os.path.join(os.getcwd(), '.catapult')
     def __init__(self):
@@ -43,6 +44,7 @@ class USER(CONFIG):
     def add_git(self, git):
         self.git.append(git)
 
+
 class GIT(CONFIG):
     def __init__(self, answers={}):
         self.platform = ''
@@ -68,11 +70,11 @@ class ENV(CONFIG):
 
 class PROJECT(CONFIG):
     def __init__(self, answers={}):
-        self.project_name = ''
-        self.project_id = get_random_id(10)
-        self.project_description = ''
-        self.project_repo = ''
-        self.last_commit = ''
+        self.project_name: str = ''
+        self.project_id: str = get_random_id(10)
+        self.project_description: str = ''
+        self.project_repo: str = ''
+        self.last_commit: str = ''
         self.docker_image = ''
         self.version = ''
         self.contributors = []

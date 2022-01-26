@@ -63,34 +63,34 @@ class LOGGER:
         _possible_loggers['python_logging'] = logging.getLogger('')
 
         # Set tensorflow logger
-        try:
-            import tensorflow as tf
-            from tensorflow.python.platform import tf_logging
-            _tf_version = None
-            try:
-                _tf_version = tf.__version__
-            except Exception as e:
-                self.log_info('No __version__ property found on tensorflow')
+        # try:
+        #     import tensorflow as tf
+        #     from tensorflow.python.platform import tf_logging
+        #     _tf_version = None
+        #     try:
+        #         _tf_version = tf.__version__
+        #     except Exception as e:
+        #         self.log_info('No __version__ property found on tensorflow')
 
-            if _tf_version[0] == '2':
-                _possible_loggers['tensorflow'] = tf_logging.get_logger()
-            else:
-                _possible_loggers['tensorflow'] = tf_logging._get_logger()
+        #     if _tf_version[0] == '2':
+        #         _possible_loggers['tensorflow'] = tf_logging.get_logger()
+        #     else:
+        #         _possible_loggers['tensorflow'] = tf_logging._get_logger()
 
-        except Exception as e:
-            self.log_warning(
-                f'Tensorflow not installed or tf_logging not found.\
-                Exception Message : {e}'
-            )
+        # except Exception as e:
+        #     self.log_warning(
+        #         f'Tensorflow not installed or tf_logging not found.\
+        #         Exception Message : {e}'
+        #     )
 
         # TODO : Set pytorch logger
-        try:
-            import torch
-        except Exception as e:
-            self.log_warning(
-                f'Pytorch not installed or pytorch_logging not found.\
-                Exception Message : {e}'
-            )
+        # try:
+        #     import torch
+        # except Exception as e:
+        #     self.log_warning(
+        #         f'Pytorch not installed or pytorch_logging not found.\
+        #         Exception Message : {e}'
+        #     )
 
         # Setting handlers for all loggers
         for logger_name, logger in _possible_loggers.items():

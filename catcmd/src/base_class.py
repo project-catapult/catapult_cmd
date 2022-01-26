@@ -29,14 +29,15 @@ class BASE:
             self._logger = CONTAINER.get_component('logger')
         else:
             self._logger = LOGGER()
+            self._logger.initialize()
             CONTAINER.register_component('logger', self._logger)
         
         # Checking For Existing VALIDATOR Initialization
-        if CONTAINER.is_registered('validator'):
-            self._validator = CONTAINER.get_component('validator')
-        else:
-            self._validator = VALIDATOR()
-            CONTAINER.register_component('validator', self._validator)
+        # if CONTAINER.is_registered('validator'):
+        #     self._validator = CONTAINER.get_component('validator')
+        # else:
+        #     self._validator = VALIDATOR()
+        #     CONTAINER.register_component('validator', self._validator)
             
         if CONTAINER.is_stored('config'):
             self.log('Found Config In Store')
@@ -47,10 +48,10 @@ class BASE:
                 if isvalid:
                     logger = CONTAINER.get_component('logger')
                     
-                    logger.set_params(
-                        logs_path = self._config.config_params.logger.logs_path,
-                        log_level = self._config.config_params.logger.log_level
-                    )
+                    # logger.set_params(
+                    #     logs_path = self._config.config_params.logger.logs_path,
+                    #     log_level = self._config.config_params.logger.log_level
+                    # )
                     
                     CONTAINER.store_entity('config', self._config)
             else:
@@ -60,18 +61,19 @@ class BASE:
         Validate Config For The Particular Component
     '''
     def _validate_config(self):
-        isvalid, missing_fields = self._validator.validate(self._config, self._source)
+        return True
+        # isvalid, missing_fields = self._validator.validate(self._config, self._source)
         
-        if not isvalid:
-            self.exception(
-                'config', 
-                'invalid_config', 
-                {
-                    'source': self._source,
-                    'missing_fields' : [', '.join(missing_fields)]
-                })
+        # if not isvalid:
+        #     self.exception(
+        #         'config', 
+        #         'invalid_config', 
+        #         {
+        #             'source': self._source,
+        #             'missing_fields' : [', '.join(missing_fields)]
+        #         })
             
-        return isvalid
+        # return isvalid
     
     '''
         Log A Simple Log
